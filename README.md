@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# 🧾 Agente NFe – Sistema Inteligente de Auditoria Fiscal
 
-## Project info
+## 📘 Descrição do Projeto
 
-**URL**: https://lovable.dev/projects/a1e5f7c2-3d4a-4062-8189-2c906d3f6271
+O **Agente NFe** é um sistema de auditoria fiscal inteligente desenvolvido para **analisar e validar automaticamente notas fiscais eletrônicas (NF-e)**.  
+Ele combina **modelos de IA generativa (LLM)**, **pipelines de processamento em Python** e **integrações via API** para automatizar a extração, validação e auditoria de dados fiscais em larga escala.
 
-## How can I edit this code?
+O sistema foi construído em **duas partes principais**:
 
-There are several ways of editing your application.
+1. **Frontend (React + Lovable.dev)**  
+   Interface moderna para exibir relatórios, dashboards e resultados de auditoria fiscal.  
+   Inclui gráficos de evolução diária, indicadores de desempenho (KPIs) e análise de impostos.
 
-**Use Lovable**
+2. **Backend (FastAPI + N8N + IA Generativa)**  
+   Contém os agentes de IA responsáveis pelas etapas de:
+   - **Extração e ingestão** de arquivos ZIP ou XML de NF-e.  
+   - **Validação determinística** e limpeza de dados.  
+   - **Auditoria com LLM**, verificando consistência de impostos, CFOP, CST, NCM e divergências fiscais.  
+   - **Armazenamento em PostgreSQL**, com tabelas `nfe_notafiscal`, `nf_itens` e `nf_auditoria`.  
+   - **Dashboard** de indicadores e comparativos automáticos por período.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a1e5f7c2-3d4a-4062-8189-2c906d3f6271) and start prompting.
+O pipeline principal segue o fluxo:
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+extract → validate_clean → load_db → audit_llm → finish
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## ⚙️ Funcionalidades Principais
 
-**Use GitHub Codespaces**
+- 📥 **Ingestão automática** de arquivos ZIP contendo NF-e (cabeçalhos e itens).  
+- 🧠 **Auditoria com IA generativa**, sugerindo correções e apontando riscos fiscais.  
+- 📊 **Dashboard consolidado**, com KPIs de valor total, documentos processados e taxa de erro.  
+- 💾 **Banco de dados PostgreSQL** otimizado com `upsert` em lotes configuráveis (`NFE_BATCH_SIZE`).  
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🧩 Tecnologias Utilizadas
 
-## What technologies are used for this project?
+| Camada | Tecnologias |
+|--------|--------------|
+| **Frontend** | React, Lovable.dev, Tailwind, Chart.js |
+| **Backend** | Python, FastAPI, SQLAlchemy, LangGraph |
+| **IA e Agentes** | OpenAI GPT (LLM audit), LangChain, N8N automations |
+| **Banco de Dados** | PostgreSQL |
+| **Infraestrutura** | Docker, Terraform, AWS (opcional) |
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🚀 Como Executar Localmente
 
-## How can I deploy this project?
+### Pré-requisitos
+- Python 3.11+
+- PostgreSQL
+- Node.js 18+
+- Docker (opcional)
 
-Simply open [Lovable](https://lovable.dev/projects/a1e5f7c2-3d4a-4062-8189-2c906d3f6271) and click on Share -> Publish.
+### Passos
 
-## Can I connect a custom domain to my Lovable project?
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/andrenickel/I2A2-AIOPs-Agentes-de-TI.git
+   cd I2A2-AIOPs-Agentes-de-TI
+   cd backend
+   ```
 
-Yes, you can!
+2. Configure o ambiente:
+   ```bash
+   cp .env.example .env
+   # Edite o arquivo com suas credenciais e chaves
+   ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+3. Instale as dependências do backend:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+4. Execute o servidor:
+   ```bash
+   uvicorn main:app --reload
+   ```
+---
+
+## 🧑‍💼 Equipe
+
+- **André Amorim**
+- **André Nickel**
+- **André Pinto**
+- **Murilo Ferrari**
+
+
+---
+
+## 📄 Licença
+
+### MIT License
+
+Copyright (c) 2025 **Equipe AIOPs-Agentes-de-TI**
+
+Por meio desta, é concedida permissão, gratuitamente, a qualquer pessoa que obtenha uma cópia deste software e dos arquivos de documentação associados (o "Software"), para lidar no Software sem restrição, incluindo, sem limitação, os direitos de usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender cópias do Software, e permitir que pessoas a quem o Software é fornecido o façam, sujeitas às seguintes condições:
+
+A declaração de copyright acima e esta permissão devem ser incluídas em todas as cópias ou partes substanciais do Software.
+
+O SOFTWARE É FORNECIDO "NO ESTADO EM QUE SE ENCONTRA", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLÍCITA, INCLUINDO, MAS NÃO SE LIMITANDO ÀS GARANTIAS DE COMERCIALIZAÇÃO, ADEQUAÇÃO A UM DETERMINADO PROPÓSITO E NÃO VIOLAÇÃO. EM NENHUM CASO OS AUTORES OU DETENTORES DO COPYRIGHT SERÃO RESPONSÁVEIS POR QUALQUER REIVINDICAÇÃO, DANO OU OUTRA RESPONSABILIDADE, SEJA EM AÇÃO DE CONTRATO, DELITO OU DE OUTRA FORMA, DECORRENTE DE, OU EM CONEXÃO COM, O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES NO SOFTWARE.
