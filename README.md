@@ -11,7 +11,7 @@ O sistema foi construído em **duas partes principais**:
    Interface moderna para exibir relatórios, dashboards e resultados de auditoria fiscal.  
    Inclui gráficos de evolução diária, indicadores de desempenho (KPIs) e análise de impostos.
 
-2. **Backend (FastAPI + N8N + IA Generativa)**  
+2. **Backend (Python + N8N + IA Generativa)**  
    Contém os agentes de IA responsáveis pelas etapas de:
    - **Extração e ingestão** de arquivos ZIP ou XML de NF-e.  
    - **Validação determinística** e limpeza de dados.  
@@ -47,40 +47,142 @@ extract → validate_clean → load_db → audit_llm → finish
 
 ---
 
-## 🚀 Como Executar Localmente
+# 📘 Documentação de Instalação e Execução do Projeto
 
-### Pré-requisitos
-- Python 3.11+
-- PostgreSQL
-- Node.js 18+
-- Docker (opcional)
+## 1. Clonar o Repositório
+```bash
+git clone https://github.com/andrenickel/I2A2-AIOPs-Agentes-de-TI.git
+cd I2A2-AIOPs-Agentes-de-TI
+```
 
-### Passos
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/andrenickel/I2A2-AIOPs-Agentes-de-TI.git
-   cd I2A2-AIOPs-Agentes-de-TI
-   cd backend
-   ```
-
-2. Configure o ambiente:
-   ```bash
-   cp .env.example .env
-   # Edite o arquivo com suas credenciais e chaves
-   ```
-
-3. Instale as dependências do backend:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Execute o servidor:
-   ```bash
-   uvicorn main:app --reload
-   ```
 ---
 
+## 2. Banco de Dados
+
+1. Crie um banco de dados **PostgreSQL**.  
+2. Execute os scripts SQL localizados na pasta **`/sql`** para criar as tabelas e estruturas necessárias.
+
+---
+
+## 3. Backend
+
+### 3.1. Acessar o diretório
+```bash
+cd backend
+```
+
+### 3.2. Configuração de Ambiente
+Crie um arquivo `.env` (ou defina variáveis de ambiente) com o seguinte conteúdo:
+
+```bash
+DATABASE_URL=postgresql+psycopg2://user:pass@host:5432/db
+OPENAI_KEY_API=sjkaj-123124123123
+```
+
+### 3.3. Instalar Dependências
+```bash
+python -m venv .venv
+source .venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+### 3.4. Executar o Servidor
+```bash
+uvicorn main:app --reload
+```
+
+O backend ficará disponível em:  
+👉 **https://localhost:8000**
+
+---
+
+## 4. N8N (Automação)
+
+1. Importe os **workflows** da pasta **`/n8n_workflows`** para o N8N.  
+2. Configure as **variáveis Secrets** para o banco de dados e para a API da OpenAI.  
+3. Atribua essas variáveis aos nós correspondentes dentro dos workflows.  
+4. Publique e salve os **endpoints gerados**.
+
+---
+
+## 5. Frontend
+
+### 5.1. Acessar o diretório
+```bash
+cd frontend
+```
+
+### 5.2. Instalar Dependências
+```bash
+npm install
+```
+
+### 5.3. Configurar Endpoints
+Atualize os endpoints nos seguintes arquivos:
+
+| Caminho | Linha |
+|----------|-------|
+| `/components/Chat.ts` | 37 |
+| `/components/FileUpload.ts` | 121 |
+| `/hook/useAIAnalysis.ts` | 60 |
+| `/hook/useDashboardData.ts` | 98 |
+| `/hook/useDocuments.ts` | 72 |
+| `/hook/useHomeStats.ts` | 14 |
+
+---
+
+### 5.4. Executar o Projeto
+```bash
+npm run dev
+```
+
+O frontend ficará disponível em:  
+👉 **https://localhost:8080**
+
+---
+
+## ⚙️ Estrutura Geral do Projeto
+
+```
+I2A2-AIOPs-Agentes-de-TI/
+├── backend/
+│   ├── main.py
+│   ├── requirements.txt
+│   └── .env
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── vite.config.js
+├── n8n_workflows/
+│   ├── workflow_1.json
+│   └── workflow_2.json
+└── sql/
+    ├── create_tables.sql
+    └── seed_data.sql
+```
+
+---
+
+## 🧩 Tecnologias Utilizadas
+- **Python / FastAPI** — Backend e APIs  
+- **PostgreSQL** — Banco de Dados  
+- **N8N** — Automação e integração entre agentes  
+- **React + Vite + TypeScript** — Frontend  
+- **OpenAI API** — IA generativa para agentes inteligentes  
+
+---
+
+## 🚀 Execução Completa
+
+1. Subir o banco de dados.  
+2. Iniciar o backend (`uvicorn`).  
+3. Importar e ativar os workflows no N8N.  
+4. Rodar o frontend (`npm run dev`).  
+
+Após isso, o sistema estará operacional e integrado entre as três camadas.
+
+---
 ## 🧑‍💼 Equipe
 
 - **André Amorim**
