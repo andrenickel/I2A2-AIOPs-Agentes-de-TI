@@ -1,0 +1,84 @@
+{
+  "name": "ConsultaNotas",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "b6021f43-0ee5-4fdc-9d2b-ae06f45d1888",
+        "responseMode": "lastNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "78fb07c8-621b-41d2-8c82-0156d8f5c29a",
+      "name": "Webhook",
+      "webhookId": "b6021f43-0ee5-4fdc-9d2b-ae06f45d1888"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "nf_cabecalho",
+          "mode": "list",
+          "cachedResultName": "nf_cabecalho"
+        },
+        "limit": 20,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        220,
+        0
+      ],
+      "id": "9c4c612c-f956-4b56-a441-d6a5f779fb0e",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "yOK5aqnyAzPy9VBW",
+          "name": "Postgres account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "dc775ecc-d141-4518-b4d3-78ee38829822",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "86d9c473b1101dc6735b2f2b2faaff0015f7e2b1b3445cc40970cf4049ae8e50"
+  },
+  "id": "YHKpzsd5VBEH83a5",
+  "tags": []
+}
