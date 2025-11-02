@@ -91,7 +91,7 @@ pip install -r requirements.txt
 
 ### 3.4. Executar o Servidor
 ```bash
-uvicorn main:app --reload
+uvicorn main:api --host 0.0.0.0 --port 8000
 ```
 
 O backend ficará disponível em:  
