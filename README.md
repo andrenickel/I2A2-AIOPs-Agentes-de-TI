@@ -5,7 +5,7 @@
 O **Agente NFe** é um sistema de auditoria fiscal inteligente desenvolvido para **analisar e validar automaticamente notas fiscais eletrônicas (NF-e)**.  
 Ele combina **modelos de IA generativa (LLM)**, **pipelines de processamento em Python** e **integrações via API** para automatizar a extração, validação e auditoria de dados fiscais em larga escala.
 
-**OBS:**Os Artefatos do produto estão na pasta **Projeto Final - Artefatos**, onde contem Relátorio do Projeto, Apresentações PPTX e MP4 de Pitch do Produto.
+**OBS:** Os Artefatos do produto estão na pasta **Projeto Final - Artefatos**, onde contem Relátorio do Projeto, Apresentações PPTX e MP4 de Pitch do Produto.
 
 O sistema foi construído em **duas partes principais**:
 
