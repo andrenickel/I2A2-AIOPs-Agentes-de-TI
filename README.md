@@ -123,14 +123,14 @@ npm install
 ### 5.3. Configurar Endpoints
 Atualize os endpoints nos seguintes arquivos:
 
-| Caminho | Linha |
-|----------|-------|
-| `/components/Chat.ts` | 37 |
-| `/components/FileUpload.ts` | 121 |
-| `/hook/useAIAnalysis.ts` | 60 |
-| `/hook/useDashboardData.ts` | 98 |
-| `/hook/useDocuments.ts` | 72 |
-| `/hook/useHomeStats.ts` | 14 |
+| Caminho | Linha | API | 
+|----------|-------|---------| 
+| `/components/Chat.ts` | 37 | API Chat N8N | 
+| `/components/FileUpload.ts` | 121 | API /Ingest Python | 
+| `/hook/useAIAnalysis.ts` | 60 | API /Analise Python | 
+| `/hook/useDashboardData.ts` | 98 | API /Dashboard Python | 
+| `/hook/useDocuments.ts` | 72 | API Docs N8N | 
+| `/hook/useHomeStats.ts` | 14 | API /Home Python | 
 
 ---
 
