@@ -8,3 +8,5 @@ psycopg2-binary>=2.9
 python-dotenv>=1.0 
 pydantic>=2.7
 python-multipart
+openai 
+openpyxl
