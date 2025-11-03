@@ -78,7 +78,7 @@ Crie um arquivo `.env` (ou defina variáveis de ambiente) com o seguinte conteú
 
 ```bash
 DATABASE_URL=postgresql+psycopg2://user:pass@host:5432/db
-OPENAI_KEY_API=sjkaj-123124123123
+OPENAI_API_KEY=sjkaj-123124123123
 ```
 
 ### 3.3. Instalar Dependências
