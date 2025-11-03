@@ -158,7 +158,8 @@ I2A2-AIOPs-Agentes-de-TI/
 │   └── vite.config.js
 ├── n8n_workflows/
 │   ├── workflow_1.json
-│   └── workflow_2.json
+│   |── workflow_2.json
+|   └── workflow_3.json
 └── sql/
     ├── create_tables.sql
     └── seed_data.sql
